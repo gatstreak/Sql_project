@@ -1,0 +1,10 @@
+C:\Users\tyler\OneDrive\Lv-6 PE\Sql_project\obj\Debug\Sql_project.csprojAssemblyReference.cache
+C:\Users\tyler\OneDrive\Lv-6 PE\Sql_project\obj\Debug\Sql_project.Form1.resources
+C:\Users\tyler\OneDrive\Lv-6 PE\Sql_project\obj\Debug\Sql_project.Properties.Resources.resources
+C:\Users\tyler\OneDrive\Lv-6 PE\Sql_project\obj\Debug\Sql_project.csproj.GenerateResource.cache
+C:\Users\tyler\OneDrive\Lv-6 PE\Sql_project\obj\Debug\Sql_project.csproj.CoreCompileInputs.cache
+C:\Users\tyler\OneDrive\Lv-6 PE\Sql_project\bin\Debug\Sql_project.exe.config
+C:\Users\tyler\OneDrive\Lv-6 PE\Sql_project\bin\Debug\Sql_project.exe
+C:\Users\tyler\OneDrive\Lv-6 PE\Sql_project\bin\Debug\Sql_project.pdb
+C:\Users\tyler\OneDrive\Lv-6 PE\Sql_project\obj\Debug\Sql_project.exe
+C:\Users\tyler\OneDrive\Lv-6 PE\Sql_project\obj\Debug\Sql_project.pdb
