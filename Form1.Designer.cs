@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.DGVCustomers = new System.Windows.Forms.DataGridView();
-            this.DGVMovie = new System.Windows.Forms.DataGridView();
             this.TAC1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -51,8 +50,8 @@
             this.txtGenre = new System.Windows.Forms.TextBox();
             this.txtRentalCost = new System.Windows.Forms.TextBox();
             this.txtMovieID = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnReturn = new System.Windows.Forms.Button();
+            this.btnRent = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -68,14 +67,22 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtRateing = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.txtRentDate = new System.Windows.Forms.TextBox();
+            this.txtReturnTime = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.txtRMID = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.DGVMovie = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.DGVCustomers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVMovie)).BeginInit();
             this.TAC1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVRentals)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVMovie)).BeginInit();
             this.SuspendLayout();
             // 
             // DGVCustomers
@@ -85,19 +92,10 @@
             this.DGVCustomers.Margin = new System.Windows.Forms.Padding(4);
             this.DGVCustomers.Name = "DGVCustomers";
             this.DGVCustomers.RowHeadersWidth = 51;
-            this.DGVCustomers.Size = new System.Drawing.Size(1238, 319);
+            this.DGVCustomers.Size = new System.Drawing.Size(1238, 323);
             this.DGVCustomers.TabIndex = 1;
-            this.DGVCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVCustomers_CellContentClick);
-            // 
-            // DGVMovie
-            // 
-            this.DGVMovie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVMovie.Location = new System.Drawing.Point(0, 0);
-            this.DGVMovie.Margin = new System.Windows.Forms.Padding(4);
-            this.DGVMovie.Name = "DGVMovie";
-            this.DGVMovie.RowHeadersWidth = 51;
-            this.DGVMovie.Size = new System.Drawing.Size(1238, 319);
-            this.DGVMovie.TabIndex = 4;
+            this.DGVCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVCustomers_CellClick);
+            this.DGVCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVCustomers_CellContentClick_1);
             // 
             // TAC1
             // 
@@ -154,6 +152,7 @@
             this.DGVRentals.RowTemplate.Height = 24;
             this.DGVRentals.Size = new System.Drawing.Size(1232, 313);
             this.DGVRentals.TabIndex = 0;
+            this.DGVRentals.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVRentals_CellClick);
             this.DGVRentals.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVRentals_CellContentClick);
             // 
             // BtnAddCustomer
@@ -206,6 +205,7 @@
             this.tbxPhone.Name = "tbxPhone";
             this.tbxPhone.Size = new System.Drawing.Size(100, 22);
             this.tbxPhone.TabIndex = 10;
+            this.tbxPhone.TextChanged += new System.EventHandler(this.tbxPhone_TextChanged);
             // 
             // tbxAddress
             // 
@@ -226,6 +226,7 @@
             this.txtCustomerID.Cursor = System.Windows.Forms.Cursors.No;
             this.txtCustomerID.Location = new System.Drawing.Point(756, 394);
             this.txtCustomerID.Name = "txtCustomerID";
+            this.txtCustomerID.ReadOnly = true;
             this.txtCustomerID.Size = new System.Drawing.Size(49, 22);
             this.txtCustomerID.TabIndex = 13;
             // 
@@ -300,36 +301,39 @@
             this.txtMovieID.Cursor = System.Windows.Forms.Cursors.No;
             this.txtMovieID.Location = new System.Drawing.Point(756, 428);
             this.txtMovieID.Name = "txtMovieID";
+            this.txtMovieID.ReadOnly = true;
             this.txtMovieID.Size = new System.Drawing.Size(49, 22);
             this.txtMovieID.TabIndex = 21;
             // 
-            // button4
+            // btnReturn
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button4.ForeColor = System.Drawing.Color.Red;
-            this.button4.Location = new System.Drawing.Point(1292, 37);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(154, 54);
-            this.button4.TabIndex = 22;
-            this.button4.Text = "Return Movie";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnReturn.ForeColor = System.Drawing.Color.Red;
+            this.btnReturn.Location = new System.Drawing.Point(1145, 445);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(154, 65);
+            this.btnReturn.TabIndex = 22;
+            this.btnReturn.Text = "Return Movie";
+            this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
-            // button5
+            // btnRent
             // 
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button5.ForeColor = System.Drawing.Color.Lime;
-            this.button5.Location = new System.Drawing.Point(1292, 125);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(154, 53);
-            this.button5.TabIndex = 23;
-            this.button5.Text = "Return Movie";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnRent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnRent.ForeColor = System.Drawing.Color.Lime;
+            this.btnRent.Location = new System.Drawing.Point(1145, 375);
+            this.btnRent.Name = "btnRent";
+            this.btnRent.Size = new System.Drawing.Size(154, 60);
+            this.btnRent.TabIndex = 23;
+            this.btnRent.Text = "Rent Movie";
+            this.btnRent.UseVisualStyleBackColor = true;
+            this.btnRent.Click += new System.EventHandler(this.btnRent_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(1275, 214);
+            this.groupBox1.Location = new System.Drawing.Point(1264, 37);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 100);
             this.groupBox1.TabIndex = 24;
@@ -465,13 +469,89 @@
             this.label7.TabIndex = 37;
             this.label7.Text = "Rateing";
             // 
+            // txtRentDate
+            // 
+            this.txtRentDate.Location = new System.Drawing.Point(1399, 413);
+            this.txtRentDate.Name = "txtRentDate";
+            this.txtRentDate.Size = new System.Drawing.Size(100, 22);
+            this.txtRentDate.TabIndex = 38;
+            // 
+            // txtReturnTime
+            // 
+            this.txtReturnTime.Location = new System.Drawing.Point(1399, 463);
+            this.txtReturnTime.Name = "txtReturnTime";
+            this.txtReturnTime.Size = new System.Drawing.Size(100, 22);
+            this.txtReturnTime.TabIndex = 39;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1321, 418);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(72, 17);
+            this.label8.TabIndex = 40;
+            this.label8.Text = "Rent Date";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(1308, 466);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(85, 17);
+            this.label9.TabIndex = 41;
+            this.label9.Text = "Return Date";
+            // 
+            // lblDate
+            // 
+            this.lblDate.Location = new System.Drawing.Point(1308, 520);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(217, 23);
+            this.lblDate.TabIndex = 42;
+            // 
+            // txtRMID
+            // 
+            this.txtRMID.Location = new System.Drawing.Point(1399, 358);
+            this.txtRMID.Name = "txtRMID";
+            this.txtRMID.ReadOnly = true;
+            this.txtRMID.Size = new System.Drawing.Size(100, 22);
+            this.txtRMID.TabIndex = 43;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(1338, 363);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 17);
+            this.label10.TabIndex = 44;
+            this.label10.Text = "RMID";
+            // 
+            // DGVMovie
+            // 
+            this.DGVMovie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVMovie.Location = new System.Drawing.Point(3, 0);
+            this.DGVMovie.Name = "DGVMovie";
+            this.DGVMovie.RowHeadersWidth = 51;
+            this.DGVMovie.RowTemplate.Height = 24;
+            this.DGVMovie.Size = new System.Drawing.Size(1235, 319);
+            this.DGVMovie.TabIndex = 0;
+            this.DGVMovie.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVMovie_CellClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1487, 543);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.ClientSize = new System.Drawing.Size(1524, 543);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtRMID);
+            this.Controls.Add(this.lblDate);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtReturnTime);
+            this.Controls.Add(this.txtRentDate);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtRateing);
+            this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbxGenre);
             this.Controls.Add(this.tbxCost);
@@ -483,8 +563,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnRent);
             this.Controls.Add(this.txtMovieID);
             this.Controls.Add(this.txtRentalCost);
             this.Controls.Add(this.txtGenre);
@@ -507,7 +586,6 @@
             this.Text = "Movies Database Application";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVCustomers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVMovie)).EndInit();
             this.TAC1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -515,6 +593,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGVRentals)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVMovie)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -522,7 +601,6 @@
 
         #endregion
         private System.Windows.Forms.DataGridView DGVCustomers;
-        private System.Windows.Forms.DataGridView DGVMovie;
         private System.Windows.Forms.TabControl TAC1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -544,8 +622,8 @@
         private System.Windows.Forms.TextBox txtGenre;
         private System.Windows.Forms.TextBox txtRentalCost;
         private System.Windows.Forms.TextBox txtMovieID;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnReturn;
+        private System.Windows.Forms.Button btnRent;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
@@ -561,6 +639,14 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtRateing;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtRentDate;
+        private System.Windows.Forms.TextBox txtReturnTime;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.TextBox txtRMID;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridView DGVMovie;
     }
 }
 

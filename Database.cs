@@ -1,5 +1,7 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Sql_project
 {
@@ -8,14 +10,16 @@ namespace Sql_project
     /// </summary>
     public class Database
     {
-        //Create Connection and Command,and an Adapter.
-
+        // declares new connection to database
         private SqlConnection Connection = new SqlConnection();
 
+        // declares command
         private SqlCommand Command = new SqlCommand();
+
+        // declares data adapter
         private SqlDataAdapter da = new SqlDataAdapter();
 
-        // private Database myDatabase = new Database();
+        // connection string
         private string connectionString = @"Data Source=DESKTOP-4F5AHK1\SQLEXPRESS01;Initial Catalog=Movies.MDF;Integrated Security=True";
 
         /// <summary>
@@ -23,8 +27,7 @@ namespace Sql_project
         /// </summary>
         public Database()
         {
-            //change the connection string to run from your own music db
-
+            //Connection
             Connection = new SqlConnection(connectionString);
         }
 
@@ -37,22 +40,33 @@ namespace Sql_project
             // Define DB connection
             // using (SqlConnection Connection = new SqlConnection(connectionString))
             {
-                //create a datatable as we only have one table, the Owner
+                //New data table
                 DataTable dt = new DataTable();
+                // Finds Movies table
                 using (da = new SqlDataAdapter("select * from Movies ", Connection))
                 {
-                    //connect in to the DB and get the SQL
+                    //opens connection
                     Connection.Open();
-                    //open a connection to the DB
+                    //fills data-table
                     da.Fill(dt);
                 }
 
-                //fill the datatable from the SQL
+                //fill the data-table from the SQL
                 Connection.Close(); //close the connection
 
-                return dt; //pass the datatable data to the DataGridView
+                return dt; //pass the data-table data to the DataGridView
             }
         }
+
+        //public void loadDB()
+        //{
+        //    GolTable.Clear();
+
+        //    // dgvMain.DataSource = myDatabase.ReadCust();
+        //    // load the customer dgv
+        //    // DisplayListBox();
+        //    // InsertCust();
+        //}
 
         /// <summary>
         /// The fill d g v customers with customer.
@@ -63,13 +77,13 @@ namespace Sql_project
             // Define DB connection
             // using (SqlConnection Connection = new SqlConnection(connectionString))
             {
-                //create a datatable as we only have one table, the Owner
                 DataTable dt = new DataTable();
                 using (da = new SqlDataAdapter("select * from Customer ", Connection))
+
                 {
                     //connect in to the DB and get the SQL
                     Connection.Open();
-                    //open a connection to the DB
+                    //fills data-table
                     da.Fill(dt);
                 }
 
@@ -89,13 +103,12 @@ namespace Sql_project
             // Define DB connection
             // using (SqlConnection Connection = new SqlConnection(connectionString))
             {
-                //create a datatable as we only have one table, the Owner
                 DataTable dt = new DataTable();
                 using (da = new SqlDataAdapter("select * from RentedMovies ", Connection))
                 {
-                    //connect in to the DB and get the SQL
+                    //open conection to db
                     Connection.Open();
-                    //open a connection to the DB
+
                     da.Fill(dt);
                 }
 
@@ -187,7 +200,7 @@ namespace Sql_project
                 update.Parameters.AddWithValue("@Title", updateArr[2]);
                 update.Parameters.AddWithValue("@Year", updateArr[3]);
                 update.Parameters.AddWithValue("@RentalCost", updateArr[4]);
-                update.Parameters.AddWithValue("@Genre", updateArr[4]);
+                update.Parameters.AddWithValue("@Genre", updateArr[5]);
 
                 // Open DB Connection
                 Connection.Open();
@@ -279,6 +292,66 @@ namespace Sql_project
 
                 // Run SQL Command - Will return how many rows were effected
                 int returnValue = DeleteData.ExecuteNonQuery();
+
+                // Close DB Connection
+                Connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// The rent movie.
+        /// </summary>
+        /// <param name="RentArr">The rent arr.</param>
+        public void RentMovie(string[] RentArr)
+        {
+            // this puts the parameters into the code so that the data in the text boxes is added to the database
+            string entryStatement = "INSERT INTO RentedMovies (MovieIDFK, CustIDFK, DateRented) VALUES(@MovieID, @CustomerID, @DateRented)";
+            // gets system date & time
+            DateTime today = System.DateTime.Now;
+            // Define DB Connection
+            SqlConnection Connection = new SqlConnection(connectionString);
+
+            using (SqlCommand entryData = new SqlCommand(entryStatement, Connection))
+            {
+                // Assigns Parameters
+                entryData.Parameters.AddWithValue("@MovieID", RentArr[0]);
+                entryData.Parameters.AddWithValue("@CustomerID", RentArr[1]);
+                entryData.Parameters.AddWithValue("@DateRented", today);
+
+                // Open DB Connection
+                Connection.Open();
+
+                // Run SQL Command - Will return how many rows were effected
+                int returnValue = entryData.ExecuteNonQuery();
+
+                // Close DB Connection
+                Connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// The return.
+        /// </summary>
+        /// <param name="updateArr">The update arr.</param>
+        public void Return(string[] updateArr)
+        {
+            // SQL Query
+            string updatestatement = "UPDATE  RentedMovies set DateReturned = @DateReturned where RMID = @RMID";
+
+            // Define DB Connection
+            SqlConnection Connection = new SqlConnection(connectionString);
+            // gets system date & time
+            DateTime today = System.DateTime.Now;
+            using (SqlCommand update = new SqlCommand(updatestatement, Connection))
+            {
+                //@RMID = txtRMID
+                update.Parameters.AddWithValue("@RMID", updateArr[0]);
+                update.Parameters.AddWithValue("@DateReturned", today);
+                // Open DB Connection
+                Connection.Open();
+
+                // Execute SQL Command
+                update.ExecuteNonQuery();
 
                 // Close DB Connection
                 Connection.Close();

@@ -8,6 +8,8 @@ namespace Sql_project
         //create an instance of the Database class
         public Database myDatabase = new Database();
 
+        private DateTime thisDay = DateTime.Now;
+
         /// <summary>
         /// The .ctor.
         /// </summary>
@@ -16,17 +18,29 @@ namespace Sql_project
             InitializeComponent();
             //loads database
             loadDB();
-            DisplayDataGridViewMovie();
-            DisplayDataGridViewCustomers();
-            DisplayDataGridViewRentals();
+          
         }
 
+        /// <summary>
+        /// Gets the today.
+        /// </summary>
+        public static DateTime Today { get; }
+
+        /// <summary>
+        /// The load d b.
+        /// </summary>
         public void loadDB()
         {
-            //  dgvMain.DataSource = myDatabase.ReadCust();
-            //load the customer dgv
+            //DGVCustomer.DataSource = dt;
+            //dt.Rows.Clear();
+            // dgvMain.DataSource = myDatabase.ReadCust();
+            // load the customer dgv
             // DisplayListBox();
             // InsertCust();
+            
+            DisplayDataGridViewCustomers();
+            DisplayDataGridViewRentals();  
+            DisplayDataGridViewMovie();
         }
 
         /// <summary>
@@ -34,9 +48,10 @@ namespace Sql_project
         /// </summary>
         private void DisplayDataGridViewMovie()
         {
+            DGVMovie.DataSource = "";
             DGVMovie.DataSource = myDatabase.FillDGVMovieWithMovies();
             //pass the datatable data to the DataGridView
-            DGVMovie.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+         //   DGVMovie.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
         /// <summary>
@@ -44,9 +59,10 @@ namespace Sql_project
         /// </summary>
         private void DisplayDataGridViewCustomers()
         {
+            DGVMovie.DataSource = "";
             DGVCustomers.DataSource = myDatabase.FillDGVCustomersWithCustomer();
             //pass the datatable data to the DataGridView
-            DGVCustomers.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+         //   DGVCustomers.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
         /// <summary>
@@ -54,9 +70,10 @@ namespace Sql_project
         /// </summary>
         private void DisplayDataGridViewRentals()
         {
+            DGVMovie.DataSource = "";
             DGVRentals.DataSource = myDatabase.FillDGVRentalsWithRentedMovies();
             //pass the datatable data to the DataGridView
-            DGVRentals.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+         //   DGVRentals.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
         //private void DisplayListBox()
@@ -87,6 +104,7 @@ namespace Sql_project
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            lblDate.Text = DateTime.Now.ToString("dddd , MMM dd yyyy,hh:mm:ss");
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -118,7 +136,11 @@ namespace Sql_project
             loadDB();
         }
 
-        //button to insert movie
+        /// <summary>
+        /// The btn insert movie_ click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
         private void btnInsertMovie_Click(object sender, EventArgs e)
         {
             // creates array from string input from text box
@@ -161,6 +183,111 @@ namespace Sql_project
             myDatabase.DelMovie(DelArr);
             //loads database / refresh dgv
             loadDB();
+        }
+
+        private void btnRent_Click(object sender, EventArgs e)
+        {
+            lblDate.Text = DateTime.Now.ToString("dddd , MMM dd yyyy,hh:mm:ss");
+            // creates array from string input from text box
+            string[] RentArr = { txtMovieID.Text, txtCustomerID.Text, };
+            //calls my database
+            myDatabase.RentMovie(RentArr);
+
+            //loads database / refresh dgv
+            loadDB();
+        }
+
+        private void DGVCustomer(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void tbxPhone_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void DGVCustomers_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        /// <summary>
+        /// The d g v customers_ cell click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
+        private void DGVCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+            txtCustomerID.Text = DGVCustomers.Rows[e.RowIndex].Cells[0].Value.ToString();
+            tbxFirstName.Text = DGVCustomers.Rows[e.RowIndex].Cells[1].Value.ToString();
+            tbxLastName.Text = DGVCustomers.Rows[e.RowIndex].Cells[2].Value.ToString();
+            tbxAddress.Text = DGVCustomers.Rows[e.RowIndex].Cells[3].Value.ToString();
+            tbxPhone.Text = DGVCustomers.Rows[e.RowIndex].Cells[4].Value.ToString();
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine("{0} Clicked Invalid cell", e);
+            }
+            
+        }
+
+        /// <summary>
+        /// The d g v movie_ cell click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
+        /// [num] = row number
+        private void DGVMovie_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+            txtMovieID.Text = DGVMovie.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtRateing.Text = DGVMovie.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtTitle.Text = DGVMovie.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtYear.Text = DGVMovie.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txtRentalCost.Text = DGVMovie.Rows[e.RowIndex].Cells[4].Value.ToString();
+            //genre is the 7th cell
+            txtGenre.Text = DGVMovie.Rows[e.RowIndex].Cells[7].Value.ToString();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("{0} Clicked Invalid cell", e);
+            }
+          
+        }
+
+        /// <summary>
+        /// The txt date_ text changed.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
+        private void txtDate_TextChanged(object sender, EventArgs e)
+        {
+            lblDate.Text = DateTime.Now.ToString("dddd , MMM dd yyyy,hh:mm:ss");
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            // creates array from string input from text box
+            string[] updateArr = { txtRMID.Text, };
+            //calls my database
+            myDatabase.Return(updateArr);
+            //loads database / refresh dgv
+            loadDB();
+        }
+
+        private void DGVRentals_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                txtRMID.Text = DGVRentals.Rows[e.RowIndex].Cells[0].Value.ToString();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("{0} Clicked Invalid cell", e);
+            }
+            
         }
     }
 }
