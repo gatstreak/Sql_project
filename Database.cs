@@ -118,7 +118,7 @@ namespace Sql_project
                 return dt; //pass the datatable data to the DataGridView
             }
         }
-
+      
         /// <summary>
         /// The insert cust.
         /// </summary>
@@ -147,6 +147,14 @@ namespace Sql_project
 
                 // Close DB Connection
                 Connection.Close();
+
+                var InsertCustcounter = 0;
+
+                InsertCustcounter ++;
+                if (InsertCustcounter == 1)
+                {
+                    MessageBox.Show("Customer Inserted!");
+                }
             }
         }
 
@@ -178,6 +186,14 @@ namespace Sql_project
 
                 // Close DB Connection
                 Connection.Close();
+
+                var InsertMoviecounter = 0;
+
+                InsertMoviecounter++;
+                if (InsertMoviecounter == 1)
+                {
+                    MessageBox.Show("Movie Inserted!");
+                }
             }
         }
 
@@ -210,6 +226,14 @@ namespace Sql_project
 
                 // Close DB Connection
                 Connection.Close();
+
+                var UpdateMoviecounter = 0;
+
+                UpdateMoviecounter++;
+                if (UpdateMoviecounter == 1)
+                {
+                    MessageBox.Show("Movie Updated!");
+                }
             }
         }
 
@@ -241,6 +265,14 @@ namespace Sql_project
 
                 // Close DB Connection
                 Connection.Close();
+
+                var UpdateCustcounter = 0;
+
+                UpdateCustcounter++;
+                if (UpdateCustcounter == 1)
+                {
+                    MessageBox.Show("Customer Updated!");
+                }
             }
         }
 
@@ -268,6 +300,14 @@ namespace Sql_project
 
                 // Close DB Connection
                 Connection.Close();
+
+                var DelCustcounter = 0;
+               
+               DelCustcounter ++;
+                if (DelCustcounter == 1)
+                {
+                    MessageBox.Show("Customer Deleted!") ;
+                }
             }
         }
 
@@ -295,6 +335,14 @@ namespace Sql_project
 
                 // Close DB Connection
                 Connection.Close();
+
+                var DelMoviecounter = 0;
+
+                DelMoviecounter++;
+                if (DelMoviecounter == 1)
+                {
+                    MessageBox.Show("Movie Deleted!");
+                }
             }
         }
 
@@ -326,6 +374,14 @@ namespace Sql_project
 
                 // Close DB Connection
                 Connection.Close();
+
+                var RentMoviecounter = 0;
+
+                RentMoviecounter++;
+                if (RentMoviecounter == 1)
+                {
+                    MessageBox.Show("Movie Returned!");
+                }
             }
         }
 
@@ -355,6 +411,14 @@ namespace Sql_project
 
                 // Close DB Connection
                 Connection.Close();
+
+                var ReturnMoviecounter = 0;
+
+                ReturnMoviecounter++;
+                if (ReturnMoviecounter == 1)
+                {
+                    MessageBox.Show("Movie Returned!");
+                }
             }
         }
     }

@@ -5,6 +5,7 @@ namespace Sql_project
 {
     public partial class Form1 : Form
     {
+       
         //create an instance of the Database class
         public Database myDatabase = new Database();
 
@@ -18,8 +19,11 @@ namespace Sql_project
             InitializeComponent();
             //loads database
             loadDB();
+            
           
         }
+
+       
 
         /// <summary>
         /// Gets the today.
@@ -141,13 +145,14 @@ namespace Sql_project
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The e.</param>
-        private void btnInsertMovie_Click(object sender, EventArgs e)
+        public void btnInsertMovie_Click(object sender, EventArgs e)
         {
             // creates array from string input from text box
             string[] insertArr = { txtTitle.Text, txtYear.Text, txtGenre.Text, txtRentalCost.Text, txtRateing.Text, };
             //calls my database
             myDatabase.InsertMovie(insertArr);
             //loads database / refresh dgv
+          
             loadDB();
         }
 
@@ -175,7 +180,7 @@ namespace Sql_project
             loadDB();
         }
 
-        private void btnRemoveMovie_Click(object sender, EventArgs e)
+        public void btnRemoveMovie_Click(object sender, EventArgs e)
         {
             // creates array from string input from text box
             string[] DelArr = { txtMovieID.Text, };
@@ -183,6 +188,7 @@ namespace Sql_project
             myDatabase.DelMovie(DelArr);
             //loads database / refresh dgv
             loadDB();
+           
         }
 
         private void btnRent_Click(object sender, EventArgs e)
@@ -275,6 +281,7 @@ namespace Sql_project
             myDatabase.Return(updateArr);
             //loads database / refresh dgv
             loadDB();
+            
         }
 
         private void DGVRentals_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -289,5 +296,7 @@ namespace Sql_project
             }
             
         }
+
+        
     }
 }
