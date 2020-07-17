@@ -10,9 +10,10 @@ namespace Sql_project
 {
     class Display
     {
-        //public void DisplayedMessage()
+        // method for pop-up on click
+        //public void MessageBoxPopUp()
         //{
-            
+        //    btnRemoveMovie.Click += btnRemoveMovie_Click;
         //}
     }
 }

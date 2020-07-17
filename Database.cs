@@ -300,14 +300,7 @@ namespace Sql_project
 
                 // Close DB Connection
                 Connection.Close();
-
-                var DelCustcounter = 0;
                
-               DelCustcounter ++;
-                if (DelCustcounter == 1)
-                {
-                    MessageBox.Show("Customer Deleted!") ;
-                }
             }
         }
 
@@ -336,13 +329,13 @@ namespace Sql_project
                 // Close DB Connection
                 Connection.Close();
 
-                var DelMoviecounter = 0;
+                //var DelMoviecounter = 0;
 
-                DelMoviecounter++;
-                if (DelMoviecounter == 1)
-                {
-                    MessageBox.Show("Movie Deleted!");
-                }
+                //DelMoviecounter++;
+                //if (DelMoviecounter == 1)
+                //{
+                //    MessageBox.Show("Movie Deleted!");
+                //}
             }
         }
 
@@ -350,8 +343,12 @@ namespace Sql_project
         /// The rent movie.
         /// </summary>
         /// <param name="RentArr">The rent arr.</param>
-        public void RentMovie(string[] RentArr)
+        public string RentMovie(string[] RentArr)
         {
+            try
+            {
+
+            
             // this puts the parameters into the code so that the data in the text boxes is added to the database
             string entryStatement = "INSERT INTO RentedMovies (MovieIDFK, CustIDFK, DateRented) VALUES(@MovieID, @CustomerID, @DateRented)";
             // gets system date & time
@@ -375,13 +372,15 @@ namespace Sql_project
                 // Close DB Connection
                 Connection.Close();
 
-                var RentMoviecounter = 0;
+                //var RentMoviecounter = 0;
+                
+                return "Success";
+            }
+            }
+            catch (Exception)
+            {
 
-                RentMoviecounter++;
-                if (RentMoviecounter == 1)
-                {
-                    MessageBox.Show("Movie Returned!");
-                }
+                return "Fail";
             }
         }
 

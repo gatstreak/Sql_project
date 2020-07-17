@@ -23,6 +23,12 @@ namespace Sql_project
           
         }
 
+        public string Message()
+        {
+            return "hello";
+
+        }
+
        
 
         /// <summary>
@@ -108,7 +114,7 @@ namespace Sql_project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            lblDate.Text = DateTime.Now.ToString("dddd , MMM dd yyyy,hh:mm:ss");
+            lblDate.Text = InserDate();
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -186,14 +192,26 @@ namespace Sql_project
             string[] DelArr = { txtMovieID.Text, };
             //calls my database
             myDatabase.DelMovie(DelArr);
+           
             //loads database / refresh dgv
             loadDB();
            
         }
+        public void MessageBoxPopUp()
+        {
+            btnRemoveMovie.Click += btnRemoveMovie_Click;
+            MessageBox.Show("Message here");
+            this.Close();
+        }
+
+        public string InserDate()
+        {
+            return DateTime.Now.ToString("dddd , MMM dd yyyy,hh:mm:ss");
+        }
 
         private void btnRent_Click(object sender, EventArgs e)
         {
-            lblDate.Text = DateTime.Now.ToString("dddd , MMM dd yyyy,hh:mm:ss");
+            lblDate.Text = InserDate();
             // creates array from string input from text box
             string[] RentArr = { txtMovieID.Text, txtCustomerID.Text, };
             //calls my database
@@ -270,7 +288,7 @@ namespace Sql_project
         /// <param name="e">The e.</param>
         private void txtDate_TextChanged(object sender, EventArgs e)
         {
-            lblDate.Text = DateTime.Now.ToString("dddd , MMM dd yyyy,hh:mm:ss");
+            lblDate.Text = InserDate();
         }
 
         private void btnReturn_Click(object sender, EventArgs e)
